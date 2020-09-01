@@ -262,7 +262,7 @@ class Brute_Force_Solver(Solver):
 
 class Recursion_Solver(Solver):
 
-    def solve_by_recursion(self, solution = None, prev_solutions = None, unsolvable = False):
+    def solve_by_recursion_balancer(self, solution = None, prev_solutions = None, unsolvable = False):
 
         if unsolvable:
             return None
@@ -290,7 +290,7 @@ class Recursion_Solver(Solver):
         if not first_call: #ON THE FIRST CALL, THEY'RE BOTH EMPTY LISTS, SO WE DON'T CHECK
             is_inf_loop = solution in prev_solutions
             if is_inf_loop:
-                return self.solve_by_recursion(solution = None, prev_solutions = None, unsolvable = True)
+                return self.solve_by_recursion_balancer(solution = None, prev_solutions = None, unsolvable = True)
 
         #BEFORE TAKING RECURSIVE STEP, LOG CURRENT POSITION
         prev_solutions.append([x for x in solution])
@@ -316,7 +316,7 @@ class Recursion_Solver(Solver):
                 solution = solution[1:]
 
         #RECURSIVE CALL
-        return self.solve_by_recursion(solution, prev_solutions, unsolvable)
+        return self.solve_by_recursion_balancer(solution, prev_solutions, unsolvable)
 
 tup_list = [ (88, [3, 9, 20, 23, 35, 56, 61, 74, 87, 95]), (59, [2, 5, 25, 34, 37, 56, 83, 88]), (61, [3, 11, 15, 56, 83, 87, 89]), (58, [2, 4, 20, 22, 28, 32, 40, 45, 53, 99]), (68, [6, 18, 25, 31, 42, 46, 48, 54, 59, 80]), (69, [9, 18, 23, 24, 31, 57, 79, 85, 92]), (83, [2, 14, 24, 57, 61, 73, 77, 88, 92]), (73, [4, 22, 29, 41, 44, 57, 66, 72, 75, 81]), (88, [3, 11, 20, 30, 36, 52, 58, 76]), (70, [3, 7, 15, 15, 56, 58, 88]), (53, [6, 12, 13, 17, 35, 43, 46, 59, 63, 79]), (42, [6, 16, 18, 27, 31, 35, 60, 69, 70, 99]), (52, [11, 20, 21, 24, 25, 26, 30, 57, 64, 75]), (82, [5, 16, 27, 31, 63, 97]), (96, [2, 7, 15]), (54, [2, 5, 29, 36, 43, 78, 87, 96]) ]
 
@@ -326,7 +326,7 @@ tup_list = [ (88, [3, 9, 20, 23, 35, 56, 61, 74, 87, 95]), (59, [2, 5, 25, 34, 3
     #brute_solution = brute.solve_by_brute_force(reduce_force = True)
 
     #recursive = Recursion_Solver(tup[0], tup[1])
-    #recursive_solution = recursive.solve_by_recursion()
+    #recursive_solution = recursive.solve_by_recursion_balancer()
 
     #print("Problem: {}".format(tup))
     #print("Correct Solution: {}".format(brute_solution))
@@ -416,7 +416,7 @@ class Recursion_Tester(Tester):
     def test_method(self):
 
         solver = Recursion_Solver(self.n, self.arr)
-        solution = solver.solve_by_recursion()
+        solution = solver.solve_by_recursion_balancer()
         return solution
 
     def valid_method(self):
