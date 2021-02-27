@@ -543,7 +543,7 @@ class Efficiency_Tester(Tester):
         with sns.axes_style("white"):
 
             sns.distplot(self.metric_reduced_list, bins = bin_count_reduced, kde=True, label= "Reduced")
-            sns.distplot(self.metric_unreduced_list, bins = bin_count_unreduced, color = "red", kde = True, label = "Unreduced")
+            #sns.distplot(self.metric_unreduced_list, bins = bin_count_unreduced, color = "red", kde = True, label = "Unreduced")
 
             plt.legend()
             plt.xlim(0, None)
@@ -551,10 +551,10 @@ class Efficiency_Tester(Tester):
 
         plt.show()
 
-#efficiency_test = Efficiency_Tester()
+efficiency_test = Efficiency_Tester()
 #efficiency_test.show_efficiency_comparison(100, "num_combinations_actual")
 #efficiency_test.show_efficiency_comparison(100, "num_combinations_max")
-#efficiency_test.show_efficiency_comparison(10000, "num_k_values")
+#efficiency_test.show_efficiency_comparison(1000, "num_k_values")
 #efficiency_test.show_efficiency_comparison(100, "array_size")
 
 class Exploratory_Tester(Tester):
@@ -642,14 +642,9 @@ class Exploratory_Tester(Tester):
 
         plt.show()
 
-explorer = Exploratory_Tester()
+#explorer = Exploratory_Tester()
 #explorer.show_array_solvability()
 #explorer.show_array_solutions()
 
-print(95%78)
-print(95%74)
-print(95%48)
-print(95%25)
-print(95%14)
-print(95%13)
-print(95%12)
+solver = Brute_Force_Solver(48, [3, 5, 10, 13, 34, 46, 55, 80, 82, 96])
+print(solver.solve_by_brute_force(reduce_force = True))
